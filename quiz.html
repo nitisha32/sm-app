@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="SchoolMaster">
+
+	<title>SchoolMaster</title>
+
+	<!-- Bootstrap core CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<link href="css/coreresources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<script src="css/coreresources/jquery/jquery.min.js"></script>
+	<script src="css/coreresources/bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- Custom fonts for this template -->
+	<link href="css/coreresources/fontawesome-free/css/all.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Muli:200,300,400,600,700|Ropa+Sans&display=swap" rel="stylesheet">
+
+	<!-- Custom CSS -->
+	<link href="css/sm_app.css" rel="stylesheet">
+</head>
+
+<body style="background-color: #84D2D7;">
+	<nav class="navbar navbar-expand-lg navbar-light nav-teal fixed-top">
+		<a class="navbar-brand" href="#">SCHOOLMASTER</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse mb-0" id="navbarSupportedContent">
+			<ul class="nav navbar-nav mr-auto"></ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="nav-item">
+					<a class="nav-link" href="#">Help</a>
+				</li>
+			</ul>
+			<div class="dropdown">
+				<button class="btn btn-round my-2 my-sm-0 ml-3 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+				<div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuButton">
+				<a class="dropdown-item" href="#">My Account</a>
+				<a class="dropdown-item" href="#">Notifications</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="#">Logout</a>
+				</div>
+			</div>
+
+		</div>
+	</nav>
+
+	<div class="container quiz-container">
+		<div class="row">
+			<div class="col-sm-9">
+				<h2 class="py-3 pl-2 mb-5">CHECK YOUR KNOWLEDGE</h2>
+			</div>
+			<div class="col-sm-3">
+				<div class="container heart-box mt-3 mr-1" id="heart-box"></div>
+			</div>
+		</div>
+
+		<div class="container" id="quiz-container">
+		</div>
+	</div>
+
+	<div id="correctAnswer" class="modal fade mt-5" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" style="background-color: #8ABE5E;">
+					<h2 class="px-3" style="font-size: 4vh;">Well done!</h2>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body py-4 px-4 quiz-modal-text">That's the correct answer.</div>
+                
+			</div>
+		</div>
+	</div>
+
+	<div id="wrongAnswer" class="modal fade mt-5" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" style="background-color: #34A5DA;">
+					<h2 class="px-3" style="font-size: 4vh;">Oops! That's doesn't seem right</h2>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body py-4 px-4 quiz-modal-text" id="explanation"></div>
+			</div>
+		</div>
+	</div>
+
+
+	<nav class="navbar fixed-bottom navbar-light nav-dark">
+		<div class="btn-group dropup">
+			<button type="button" class="btn btn-square dropdown-toggle ml-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">M</button>
+			<div class="dropdown-menu drop-dark">
+				<a class="dropdown-item disabled drop-header-dark pb-3">TREASURE HUNTING</a>
+				<a class="dropdown-item drop-item-dark pb-2" href="./index.html">1. Meet Penguin The Pirate</a>
+				<a class="dropdown-item drop-item-dark pb-2" href="./code_play.html">2. Reach The Treasure</a>
+				<a class="dropdown-item drop-item-dark pb-2 " href="./quiz.html">3. Check Your Knowledge</a>
+			</div>
+		</div>
+		<div class="container mr-0 ml-3 px-0  nav-bot">
+			<ul class="nav navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="././code_play.html"><button class="btn btn-light" type="button">Prev</button></a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav mr-auto">
+				<li class="nav-item activity-num">3/4</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="nav-item">
+					<a class="nav-link mr-3" href="./quiz.html"><button class="btn btn-light" type="button">Next</button></a>
+				</li>
+			</ul>		
+		</div>
+		<div class="btn-group dropup">
+			<button type="button" class="btn btn-square dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">?</button>
+			<div class="dropdown-menu drop-dark dropdown-menu-right">
+				<a class="dropdown-item drop-item-dark pb-2" href="#">See hint</a>
+				<a class="dropdown-item drop-item-dark pb-2" href="#">Go back to video</a>
+			</div>
+		</div>
+	</nav>
+</body>
+
+<script type="text/javascript">
+	var questions = [
+		["What did we use to help robot make food?", "Algosongs", "Algorithms", "Algo-thingies", 2, "The instructions we used are called Algorithms"], 
+		["What are algorithms?", "Step by step instructions to complete tasks", "Music albums", "A book to write recipes in", 1, "Algorithms are step by step instructions to complete tasks"],
+		["What is an important thing to keep in mind for algorithms?", "Steps should be in the right order", "They should look pretty", "They should be boring", 1, "The most important thing is to make sure that all the steps are in the right order"]
+	];
+	var pos = 0;
+	var correct = 0;
+	var lives_rem = 2;
+	var allowed_lives = 2;
+
+	window.addEventListener("load", renderQuestion, false);
+	function renderQuestion () {
+		var test = document.getElementById("quiz-container");
+		var lives = document.getElementById("heart-box");
+		var question = questions[pos][0];
+		var chA = questions[pos][1];
+		var chB = questions[pos][2];
+		var chC = questions[pos][3];
+		test.innerHTML = "<h3 class= 'mb-4'>"+question+"</h3>";
+		// the += appends to the data we started on the line above
+		test.innerHTML += "<button class = 'btn btn-warning btn-options ml-0 mb-2' onclick='checkAnswer(1)'> "+chA+"</button><br>";
+		test.innerHTML += "<button class = 'btn btn-warning btn-options ml-0 mb-2' onclick='checkAnswer(2)' value='B' id='choices'> "+chB+"</button><br>";
+		test.innerHTML += "<button class = 'btn btn-warning btn-options ml-0 mb-2' onclick='checkAnswer(3)' value='C' id='choices'> "+chC+"</button><br>";
+		//test.innerHTML += "<button class = 'btn btn-success' onclick='checkAnswer()'>Submit Answer</button>";
+		lives.innerHTML = "";
+		for (var red=0; red< lives_rem;red++){
+			lives.innerHTML += "<img style='height: 5vh;' class='mx-1' src = 'css/img/red_heart.png'/>";
+		}
+		for  (var grey=allowed_lives; grey > lives_rem; grey--){
+			lives.innerHTML += "<img style='height: 5vh;' class='mx-1' src = 'css/img/grey_heart.png'/>";
+		}
+	}
+
+	
+	function checkAnswer(choice) {
+		if (choice === questions[pos][4]){
+			console.log(choice)
+			correct++;
+			pos++;
+			$('#correctAnswer').modal('show');
+			//alert("Good job!");
+			setTimeout(function() {
+				$('#correctAnswer').modal('hide');
+				renderQuestion();
+			}, 1500);
+
+			if (pos>questions.length-1) {
+				showSuccess();
+			}
+
+		}
+		else {
+			lives_rem--;
+			var explain = document.getElementById("explanation");
+			explain.innerHTML = questions[pos][5];
+			$('#wrongAnswer').modal('show');
+			if (lives_rem===0) {
+				showOutofLives();
+			}
+			else {
+				pos++;
+				if (pos>questions.length-1) {
+					showSuccess();
+				}
+				else {
+					
+					renderQuestion();
+				}
+			}
+		}
+	}
+
+	function showSuccess() {
+		var test = document.getElementById("quiz-container");
+		test.innerHTML = "<h2 class = 'mb-4'> You did it!</h2>";
+		test.innerHTML += "<p class = 'quiz-modal-text'>You got " + correct + " out of " + questions.length +" questions correct</p>" 
+	}
+
+	function showOutofLives() {
+		var test = document.getElementById("quiz-container");
+		test.innerHTML = "<h2 class = 'mb-4'> You have run out of lives</h2>";
+		test.innerHTML += "<p class = 'quiz-modal-text'>Watch the video and then try again</p>"
+	}
+
+</script>
+</html>
